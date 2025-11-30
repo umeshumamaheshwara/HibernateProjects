@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+             https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+
+    <persistence-unit name="myPersistenceUnit">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <properties>
+
+            <!-- Database Configuration -->
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/hiberpro?createDatabaseIfNotExist=true"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value="root"/>
+
+            <!-- Hibernate Settings -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+
+            <!-- ======================================== -->
+            <!--           SECOND LEVEL CACHE              -->
+            <!-- ======================================== -->
+
+            <!-- Enable 2nd Level Cache -->
+            <property name="hibernate.cache.use_second_level_cache" value="true"/>
+
+            <!-- Enable Query Cache -->
+            <property name="hibernate.cache.use_query_cache" value="true"/>
+
+            <!-- Use JCache as Cache Provider (Hazelcast supports it) -->
+            <property name="hibernate.cache.region.factory_class"
+                      value="org.hibernate.cache.jcache.JCacheRegionFactory"/>
+
+            <!-- Hazelcast JCache Provider -->
+            <property name="hibernate.javax.cache.provider"
+                      value="com.hazelcast.cache.impl.HazelcastServerCachingProvider"/>
+
+            <!-- Hazelcast Configuration File -->
+            <property name="hibernate.javax.cache.uri"
+                      value="hazelcast.xml"/>
+
+            <!-- Debugging Cache Stats (optional) -->
+            <property name="hibernate.generate_statistics" value="true"/>
+
+        </properties>
+    </persistence-unit>
+
+</persistence>

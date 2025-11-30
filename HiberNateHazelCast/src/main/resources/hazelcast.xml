@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hazelcast xmlns="http://www.hazelcast.com/schema/config"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.hazelcast.com/schema/config
+           https://www.hazelcast.com/schema/config/hazelcast-config-5.3.xsd">
+
+    <cluster-name>hibernate-cluster</cluster-name>
+
+    <!-- Default cache -->
+    <cache name="default">
+        <key-type class-name="java.lang.Object"/>
+        <value-type class-name="java.lang.Object"/>
+        <eviction eviction-policy="LRU" size="5000" max-size-policy="ENTRY_COUNT"/>
+    </cache>
+
+    <!-- Entity Cache Region -->
+    <cache name="entity">
+        <key-type class-name="java.lang.Object"/>
+        <value-type class-name="java.lang.Object"/>
+        <eviction eviction-policy="LRU" size="10000" max-size-policy="ENTRY_COUNT"/>
+    </cache>
+
+    <!-- Query Cache Region -->
+    <cache name="query">
+        <key-type class-name="java.lang.Object"/>
+        <value-type class-name="java.lang.Object"/>
+        <eviction eviction-policy="LRU" size="5000" max-size-policy="ENTRY_COUNT"/>
+    </cache>
+
+</hazelcast>
